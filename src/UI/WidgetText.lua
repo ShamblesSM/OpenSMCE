@@ -22,7 +22,7 @@ end
 
 
 function UIWidgetText:draw(variables)
-	self.font:draw(self.textTmp, self.parent:getPos(), self.align, nil, self.parent:getAlpha(), nil, self.parent.blendMode)
+	self.font:draw(self.textTmp, self.parent:getPos(), self.align, nil, self.parent:getAlpha())
 end
 
 function UIWidgetText:getSize()

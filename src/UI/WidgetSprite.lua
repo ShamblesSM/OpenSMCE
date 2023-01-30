@@ -17,7 +17,7 @@ end
 
 
 function UIWidgetSprite:draw()
-	self.sprite:draw(self.parent:getPos(), nil, nil, nil, nil, nil, self.parent:getAlpha(), nil, self.parent.blendMode)
+	self.sprite:draw(self.parent:getPos(), nil, nil, nil, nil, nil, self.parent:getAlpha())
 end
 
 return UIWidgetSprite
