@@ -12,13 +12,12 @@ The ongoing plan is to keep releasing Beta 4.x versions, which will contain new 
 
 Some of the features planned include:
 - Sphere tags
-- Sphere selectors
-- Difficulty system
-- Shooter types/presets
-- Massively enhanced sound effects
-  - Split sound effects into actual effect files and sound definitions (number of samples, stream/load etc.)
-- Complete rewrite of UI system
+- Sphere selectors (https://github.com/jakubg1/OpenSMCE/issues/39)
+- Difficulty system (https://github.com/jakubg1/OpenSMCE/issues/1)
+- Enhanced sound effects (https://github.com/jakubg1/OpenSMCE/issues/95)
+- Complete rewrite of UI system (UI2 - under development; paused)
 - Progress autosave
+- Shooter types/presets (Done!)
 
 Beta 5.0 is an upcoming version, which is planned once the full game documentation is finished. This includes both a reference manual and JSON schemas. For more information you can look at the following folders:
 - Reference manual (generated automatically from a Python script, uses data contained in `data.txt`): `doc/game`
@@ -100,12 +99,6 @@ LICENSE
 .gitignore
 ```
 
-## Showcase
-Here are some videos showcasing the recent progress on the engine:
-
-[![Video 1](https://img.youtube.com/vi/vPKg8oilgqI/0.jpg)](https://www.youtube.com/watch?v=vPKg8oilgqI)
-[![Video 2](https://img.youtube.com/vi/_bZRL3-Cn8c/0.jpg)](https://www.youtube.com/watch?v=_bZRL3-Cn8c)
-
 ## Documentation
 Both code and game documentation are currently work in progress.
 
@@ -115,9 +108,10 @@ Game documentation is done in the form of schemas - there are only a few structu
 
 
 
-This repository contains code from following sources:
+This repository contains code and other assets from the following sources:
   - Class implementation from https://github.com/bncastle/love2d-tutorial/blob/Episode4/class.lua (MIT license)
   - JSON decoder/encoder implementation from https://github.com/rxi/json.lua (MIT license)
   - Discord Rich Presence DLL from https://github.com/discord/discord-rpc (MIT license)
   - Lua wrapper for Discord Rich Presence from https://github.com/pfirsich/lua-discordRPC (MIT license)
   - Unifont font from https://unifoundry.com/unifont/ (GNU GPLv2 license: https://unifoundry.com/LICENSE.txt)
+  - DejaVu Sans font from https://dejavu-fonts.github.io/ (custom license: https://dejavu-fonts.github.io/License.html)

@@ -1,10 +1,10 @@
-local class = require "com/class"
+local class = require "com.class"
 
 ---@class SphereChain
 ---@overload fun(path, deserializationTable):SphereChain
 local SphereChain = class:derive("SphereChain")
 
-local SphereGroup = require("src/SphereGroup")
+local SphereGroup = require("src.SphereGroup")
 
 
 
@@ -195,7 +195,7 @@ function SphereChain:endCombo()
 		return
 	end
 	--_Debug.console:print(self.comboScore)
-	_Game.ui2Manager:executeCallback({
+	_Game.uiManager:executeCallback({
 		name = "comboEnded",
 		parameters = {self.combo, self.comboScore}
 	})

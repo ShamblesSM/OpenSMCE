@@ -1,4 +1,4 @@
-local class = require "com/class"
+local class = require "com.class"
 
 ---@class UI2WidgetSpriteProgress
 ---@overload fun(node, align, sprite, value, smooth):UI2WidgetSpriteProgress
@@ -42,7 +42,7 @@ end
 
 ---Draws this Widget on the screen.
 function UI2WidgetSpriteProgress:update(dt)
-	local value = _ParseNumber(self.valueData)
+	local value = self.valueData
 	if self.smooth then
 		if self.value < value then
 			self.value = math.min(self.value * 0.95 + value * 0.0501, value)

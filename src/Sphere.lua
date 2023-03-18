@@ -1,14 +1,14 @@
 ### This class is not used yet. All sphere algorithms are stored in SphereGroup.lua.
 
-local class = require "com/class"
+local class = require "com.class"
 
 ---@class Sphere
 ---@overload fun(sphereGroup, deserializationTable, color, shootOrigin, shootTime, sphereEntity):Sphere
 local Sphere = class:derive("Sphere")
 
-local Vec2 = require("src/Essentials/Vector2")
-local Color = require("src/Essentials/Color")
-local SphereEntity = require("src/SphereEntity")
+local Vec2 = require("src.Essentials.Vector2")
+local Color = require("src.Essentials.Color")
+local SphereEntity = require("src.SphereEntity")
 
 
 
@@ -171,6 +171,10 @@ end
 function Sphere:changeColor(color, particle)
 	_Game.session.colorManager:decrement(self.color)
 	_Game.session.colorManager:increment(color)
+	if self.danger then
+		_Game.session.colorManager:decrement(self.color, true)
+		_Game.session.colorManager:increment(color, true)
+	end
 	self.color = color
 	self.entity:setColor(color)
 	self:loadConfig()

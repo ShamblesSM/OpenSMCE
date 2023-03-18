@@ -1,15 +1,15 @@
-local class = require "com/class"
+local class = require "com.class"
 
 ---@class Debug
 ---@overload fun():Debug
 local Debug = class:derive("Debug")
 
-local Vec2 = require("src/Essentials/Vector2")
+local Vec2 = require("src.Essentials.Vector2")
 
-local Profiler = require("src/Kernel/Profiler")
-local Console = require("src/Kernel/Console")
+local Profiler = require("src.Kernel.Profiler")
+local Console = require("src.Kernel.Console")
 
-local Expression = require("src/Expression")
+local Expression = require("src.Expression")
 
 
 
@@ -113,7 +113,7 @@ end
 
 
 function Debug:getUITreeText(node, rowTable, indent)
-	node = node or _Game.ui2Manager.rootNodes["root"] or _Game.ui2Manager.rootNodes["splash"]
+	node = node or _Game.uiManager.rootNodes["root"] or _Game.uiManager.rootNodes["splash"]
 	rowTable = rowTable or {}
 	indent = indent or 0
 	--if indent > 1 then return end
@@ -186,7 +186,10 @@ function Debug:getDebugLevel()
 	local s = ""
 
 	s = s .. "LevelScore = " .. tostring(_Game.session.level.score) .. "\n"
-	s = s .. "LevelProgress = " .. tostring(_Game.session.level.destroyedSpheres) .. "/" .. tostring(_Game.session.level.target) .. "\n"
+	s = s .. "Objectives:\n"
+	for i, objective in ipairs(_Game.session.level.objectives) do
+		s = s .. string.format("  %s: %s %s/%s\n", i, objective.type, objective.progress, objective.target)
+	end
 	s = s .. "\n"
 	s = s .. "Collectible# = " .. tostring(#_Game.session.level.collectibles) .. "\n"
 	s = s .. "FloatingText# = " .. tostring(#_Game.session.level.floatingTexts) .. "\n"

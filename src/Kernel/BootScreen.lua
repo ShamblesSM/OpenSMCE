@@ -1,16 +1,16 @@
-local class = require "com/class"
+local class = require "com.class"
 
 ---@class BootScreen
 ---@overload fun():BootScreen
 local BootScreen = class:derive("BootScreen")
 
-local Vec2 = require("src/Essentials/Vector2")
-local Button = require("src/Kernel/UI/Button")
+local Vec2 = require("src.Essentials.Vector2")
+local Button = require("src.Kernel.UI.Button")
 
-local VersionManager = require("src/Kernel/VersionManager")
+local VersionManager = require("src.Kernel.VersionManager")
 
-local BootMain = require("src/Kernel/Scene/BootMain")
-local BootSettings = require("src/Kernel/Scene/BootSettings")
+local BootMain = require("src.Kernel.Scene.BootMain")
+local BootSettings = require("src.Kernel.Scene.BootSettings")
 
 
 
@@ -39,7 +39,7 @@ function BootScreen:init()
 	self:setScene("main")
 
 	-- discord rpc connection
-	_DiscordRPC:setStatus(string.format("Boot Screen - Version: %s (Build %s)", _VERSION_NAME, _BUILD_NUMBER), nil, true)
+	_DiscordRPC:setStatus(string.format("Boot Screen - Version: %s", _VERSION_NAME), nil, true)
 end
 
 

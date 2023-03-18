@@ -7,18 +7,18 @@
 
 
 -- Class identification
-local class = require "com/class"
+local class = require "com.class"
 
 ---@class Session
 ---@overload fun(path, deserializationTable):Session
 local Session = class:derive("Session")
 
 -- Include commons
-local Vec2 = require("src/Essentials/Vector2")
+local Vec2 = require("src.Essentials.Vector2")
 
 -- Include class constructors
-local Level = require("src/Level")
-local ColorManager = require("src/ColorManager")
+local Level = require("src.Level")
+local ColorManager = require("src.ColorManager")
 
 
 
@@ -32,7 +32,7 @@ end
 
 ---An initialization callback.
 function Session:init()
-	_Game.ui2Manager:executeCallback("sessionInit")
+	_Game.uiManager:executeCallback("sessionInit")
 end
 
 
@@ -51,9 +51,9 @@ function Session:startLevel()
 	local savedLevelData = _Game:getCurrentProfile():getSavedLevel()
 	if savedLevelData then
 		self.level:deserialize(savedLevelData)
-		_Game.ui2Manager:executeCallback("levelLoaded")
+		_Game.uiManager:executeCallback("levelLoaded")
 	else
-		_Game.ui2Manager:executeCallback("levelStart")
+		_Game.uiManager:executeCallback("levelStart")
 	end
 end
 
@@ -83,7 +83,7 @@ end
 ---Destroys this level and triggers a `gameOver` callback in the UI script.
 function Session:terminate()
 	self.level = nil
-	_Game.ui2Manager:executeCallback("gameOver")
+	_Game.uiManager:executeCallback("gameOver")
 end
 
 

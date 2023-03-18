@@ -1,16 +1,16 @@
-local class = require "com/class"
+local class = require "com.class"
 
 ---@class Level
 ---@overload fun(data):Level
 local Level = class:derive("Level")
 
-local Vec2 = require("src/Essentials/Vector2")
+local Vec2 = require("src.Essentials.Vector2")
 
-local Map = require("src/Map")
-local Shooter = require("src/Shooter")
-local ShotSphere = require("src/ShotSphere")
-local Collectible = require("src/Collectible")
-local FloatingText = require("src/FloatingText")
+local Map = require("src.Map")
+local Shooter = require("src.Shooter")
+local ShotSphere = require("src.ShotSphere")
+local Collectible = require("src.Collectible")
+local FloatingText = require("src.FloatingText")
 
 
 
@@ -225,7 +225,7 @@ function Level:updateLogic(dt)
 		self.wonDelay = self.wonDelay - dt
 		if self.wonDelay <= 0 then
 			self.wonDelay = nil
-			_Game.ui2Manager:executeCallback("levelComplete")
+			_Game.uiManager:executeCallback("levelComplete")
 			self.ended = true
 		end
 	end
@@ -234,7 +234,7 @@ function Level:updateLogic(dt)
 
 	-- Level lose
 	if self.lost and self:getEmpty() and not self.ended then
-		_Game.ui2Manager:executeCallback("levelLost")
+		_Game.uiManager:executeCallback("levelLost")
 		self.ended = true
 	end
 end
@@ -683,7 +683,7 @@ end
 ---Takes one life away from the current Profile, and either restarts this Level, or ends the game.
 function Level:tryAgain()
 	if _Game:getCurrentProfile():loseLevel() then
-		_Game.ui2Manager:executeCallback("levelStart")
+		_Game.uiManager:executeCallback("levelStart")
 		self:reset()
 	else
 		_Game.session:terminate()

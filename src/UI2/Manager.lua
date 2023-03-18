@@ -1,12 +1,12 @@
-local class = require "com/class"
+local class = require "com.class"
 
 ---@class UI2Manager
 ---@overload fun():UI2Manager
 local UI2Manager = class:derive("UI2Manager")
 
 -- Place your imports here
-local UI2Node = require("src/UI2/Node")
-local UI2Sequence = require("src/UI2/Sequence")
+local UI2Node = require("src.UI2.Node")
+local UI2Sequence = require("src.UI2.Sequence")
 
 
 
@@ -106,7 +106,7 @@ end
 function UI2Manager:initSplash()
     self:loadRootNode("splash")
 
-    self.script = require(_ParsePath("ui2/script"))
+    self.script = require(_ParsePathDots("ui2.script"))
     self:executeCallback("init")
 end
 
@@ -174,6 +174,19 @@ function UI2Manager:getNode(path)
         end
     end
     return node
+end
+
+
+
+---Returns whether any meaningful Node like a button has been hovered.
+---@return boolean
+function UI2Manager:isButtonHovered()
+    for nodeN, node in pairs(self.rootNodes) do
+        if node:isButtonHovered() then
+            return true
+        end
+    end
+    return false
 end
 
 

@@ -1,16 +1,16 @@
-local class = require "com/class"
+local class = require "com.class"
 
 ---@class UI2Node
 ---@overload fun(manager, config, name, parent):UI2Node
 local UI2Node = class:derive("UI2Node")
 
 -- Place your imports here
-local UI2WidgetRectangle = require("src/UI2/WidgetRectangle")
-local UI2WidgetSprite = require("src/UI2/WidgetSprite")
-local UI2WidgetSpriteButton = require("src/UI2/WidgetSpriteButton")
-local UI2WidgetSpriteProgress = require("src/UI2/WidgetSpriteProgress")
-local UI2WidgetText = require("src/UI2/WidgetText")
-local UI2WidgetLevel = require("src/UI2/WidgetLevel")
+local UI2WidgetRectangle = require("src.UI2.WidgetRectangle")
+local UI2WidgetSprite = require("src.UI2.WidgetSprite")
+local UI2WidgetSpriteButton = require("src.UI2.WidgetSpriteButton")
+local UI2WidgetSpriteProgress = require("src.UI2.WidgetSpriteProgress")
+local UI2WidgetText = require("src.UI2.WidgetText")
+local UI2WidgetLevel = require("src.UI2.WidgetLevel")
 
 
 
@@ -257,6 +257,23 @@ end
 
 
 
+---Returns whether a meaningful Node (which is either this or its child) like a button has been hovered.
+---@return boolean
+function UI2Node:isButtonHovered()
+    if self.widget and self.widget.type == "spriteButton" and self.widget.hovered then
+        return true
+    end
+
+    for childN, child in pairs(self.children) do
+        if child:isButtonHovered() then
+            return true
+        end
+    end
+    return false
+end
+
+
+
 ---Returns the full path to this Node.
 ---@return string
 function UI2Node:getPath()
@@ -280,7 +297,7 @@ function UI2Node:generateDrawData(layers)
 			table.insert(layers[self:getLayer()], self)
 		end
 		--if self.widget.type == "text" then
-		--	self.widget.textTmp = _ParseString(self.widget.text)
+		--	self.widget.textTmp = self.widget.text
 		--end
 	end
 end
